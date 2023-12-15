@@ -12,6 +12,12 @@
   <header class="header"></header>
     <div class="container mt-2">
         <h1 class=" title-game mt-5 mb-2 pb-5 text-center">Choose Paper, Rock Or Scissors</h1>
+        <button type="button" id="display_rounds" class="btn rounds_diplay">
+          Rounds Left :<span class="badge badge-light rounds_left_to_play">3</span>
+        </button>
+        <button type="button" class="btn" id="reset" class="btn">
+          Reset <span class="badge badge-light rounds_left_to_play"></span>
+        </button>
         <div class="row">
           <div class="col-sm score score_text_div.fs-5 text text-center">
               <p class="score">Won :<span class="won score_text"></span></p>
@@ -42,8 +48,8 @@
               <div id="result" class="result text-center text-x2 "></div>
             </div>
           </div>
-          <div class="congratulations" id="congratulations">
-            <p>Congratulations! You won the game!</p>
+          <div>
+            <p class="congratulations" id="congratulations">Congratulations! You won the game!</p>
         </div>
           
         </div>

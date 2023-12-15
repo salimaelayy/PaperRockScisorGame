@@ -113,3 +113,15 @@ section
     color: green;
     margin-top: 20px;
 }
+button.btn.rounds_diplay {
+    color: white;
+    background-color: #fb8500;
+    margin-bottom: 10px;
+}
+#reset
+{
+    display: none;
+    background-color: #8ecae6;
+    color:#023047;
+    font-weight: bold;
+}
