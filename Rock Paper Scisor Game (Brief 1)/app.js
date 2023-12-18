@@ -1,95 +1,99 @@
-const randomChoices = ["rock","paper","scissor"];
-let won=document.querySelector(".won");
-let draw=document.querySelector(".draw");
-let lost=document.querySelector(".lost");
-let resultdiv = document.getElementById("result");
-let computer_choice=document.querySelector(".computer-choice");
-let player_choice = document.querySelector(".player-choice");
-let result_container=document.querySelector(".result-container");
-let rounds_left_display=document.querySelector(".rounds_left_to_play");
-let reset=document.querySelector("#reset");
-let display_rounds=document.querySelector("#display_rounds");
-let won_score=0,draw_score=0,lost_score=0; 
-let roundsPlayed=3;
-let result;
+const randomChoices = ["rock", "paper", "scissor"];
+const [won, draw, lost, resultdiv, computer_choice, player_choice,computer_choice_txt,player_choice_txt, rounds_left_display, reset, display_rounds] = [
+  document.querySelector(".won"),
+  document.querySelector(".draw"),
+  document.querySelector(".lost"),
+  document.getElementById("result"),
+  document.querySelector(".computer-choice"),
+  document.querySelector(".player-choice"),
+  document.querySelector(".computer-choice-txt"),
+  document.querySelector(".player_choice_txt"),
+  document.querySelector(".rounds_left_to_play"),
+  document.querySelector("#reset"),
+  document.querySelector("#display_rounds"),
+];
+let won_score = 0, draw_score = 0, lost_score = 0;
+let roundsPlayed = 3;
 
 
-//onclick
-const onClick = (value)=>{
-    if (roundsPlayed > 0) 
-    {
-        //random choise
-        var indexRandom = Math.floor(Math.random() * randomChoices.length);
-        var computer = randomChoices[indexRandom];
+const updateScores = (result, color, playerValue, computerValue) => {
+    resultdiv.innerHTML = result;
+    resultdiv.style.color = color;
+    player_choice.innerHTML = `${
+        playerValue === "paper" ? '<i class=" fa-5x fa-solid fa-hand paper hover-icon"></i>' :
+        playerValue === "scissor" ? '<i class=" fa-5x fa-solid fa-hand-scissors hover-icon"></i>' :
+        playerValue === "rock" ? '<i class=" fa-5x fa-solid fa-hand-back-fist hover-icon"></i>' :
+        ''
+    }`;
+    
+    computer_choice.innerHTML = `${
+        computerValue === "paper" ? '<i class=" fa-5x fa-solid fa-hand paper hover-icon"></i>' :
+        computerValue === "scissor" ? '<i class="border border-primary rounded p-2 fa-5x fa-solid fa-hand-scissors hover-icon"></i>' :
+        computerValue === "rock" ? '<i class=" p-2 fa-5x fa-solid fa-hand-back-fist hover-icon"></i>' :
+        ''
+    }`;
+};
 
-        //if computer choice and the player choice are equal then it's
+const onClick = (value) => {
+    if (roundsPlayed > 0) {
+        const indexRandom = Math.floor(Math.random() * randomChoices.length);
+        const computer = randomChoices[indexRandom];
+
         if (computer === value) {
-            resultdiv.innerHTML = "It's a draw";
-            player_choice.innerHTML = `You Chose: ${value}`;
-            computer_choice.innerHTML = `Computer Chose: ${computer}`;
-            value = ""; computer = "";
+            updateScores("It's a draw", "#8ecae6", value, computer);
             draw_score++;
             draw.innerHTML = draw_score;
-            resultdiv.style.color = "#8ecae6";
+            
+            
         } else if ((value === "paper" && computer === "rock") || (value === "scissor" && computer === "paper") || (value === "rock" && computer === "scissor")) {
-            resultdiv.innerHTML = "You Won This Round";
-            resultdiv.style.color = "#219ebc";
-            player_choice.innerHTML = `You Chose: ${value}`;
-            computer_choice.innerHTML = `Computer Chose: ${computer}`;
-            value = ""; computer = "";
+            updateScores("You Won This Round", "#219ebc", value, computer);
             won_score++;
             won.innerHTML = won_score;
+            won.style.transform="rotate(180deg)";
         } else {
-            resultdiv.style.color = "#fb8500";
-            resultdiv.innerHTML = "You Lost This Round";
-            player_choice.innerHTML = `You Chose: ${value}`;
-            computer_choice.innerHTML = `Computer Chose: ${computer}`;
-            value = ""; computer = "";
+            updateScores("You Lost This Round", "#fb8500", value, computer);
             lost_score++;
             lost.innerHTML = lost_score;
         }
-        roundsPlayed--;
-        rounds_left_display.innerHTML=roundsPlayed;
 
-        if(roundsPlayed===0)
-        {
+        roundsPlayed--;
+        rounds_left_display.innerHTML = roundsPlayed;
+
+        if (roundsPlayed === 0) {
             reset.style.display="block";
             display_rounds.style.display="none";
             
             if(won_score === lost_score)
             {
                 resultdiv.innerHTML = "It's a tie! Scores are equal.";
-                resultdiv.style.fontSize="25px";
+                resultdiv.style.fontSize="30px";
 
             }else if(won_score > lost_score)
             {
                 resultdiv.innerHTML = "You Won This Match!";
-                resultdiv.style.fontSize="25px";
+                resultdiv.style.fontSize="30px";
             }
             else
             {
                 resultdiv.innerHTML = "You Lost This Match!";
-                resultdiv.style.fontSize="25px";
+                resultdiv.style.fontSize="30px";
             }
+            
         }
-    } 
+    }
 }
-
-
-reset.addEventListener('click',function () 
-{
-    won.innerHTML = 0;
-    lost.innerHTML = 0;
-    draw.innerHTML = 0;
-    won_score=0;
-    draw_score=0;
-    lost_score=0;
+reset.addEventListener('click', function () {
+    won.innerHTML = "";
+    lost.innerHTML = "";
+    draw.innerHTML = "0";
+    won_score = 0;
+    draw_score = 0;
+    lost_score = 0;
     roundsPlayed = 3;
-    reset.style.display="none";
-    display_rounds.style.display="block";
+    reset.style.display = "none";
+    display_rounds.style.display = "block";
     resultdiv.innerHTML = "";
-    player_choice.innerHTML = `You Chose:`;
-    computer_choice.innerHTML = `Computer Chose:`;
+    playerValue="";
+    computerValue="";
+});
 
-    
-})

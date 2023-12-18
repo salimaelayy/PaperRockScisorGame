@@ -10,15 +10,18 @@
 </head>
 <body class="body-game">
   <header class="header"></header>
-    <div class="container mt-2">
-        <h1 class=" title-game mt-5 mb-2 pb-5 text-center">Choose Paper, Rock Or Scissors</h1>
-        <button type="button" id="display_rounds" class="btn rounds_diplay">
-          Rounds Left :<span class="badge badge-light rounds_left_to_play">3</span>
-        </button>
-        <button type="button" class="btn" id="reset" class="btn">
-          Reset <span class="badge badge-light rounds_left_to_play"></span>
-        </button>
-        <div class="row">
+    <div class="container mt-1">
+        <h1 class=" title-game mt-5 text-center">Choose Paper, Rock Or Scissors</h1>
+        <div  class="">
+          <button type="button" id="display_rounds" class="btn rounds_diplay">
+            Rounds Left :<span class="badge badge-light rounds_left_to_play">3</span>
+          </button>
+          <button type="button" class="btn " id="reset" class="btn">
+            Reset <span class="badge badge-light rounds_left_to_play"></span>
+          </button>
+        </div>
+        
+        <div class="row mt-1">
           <div class="col-sm score score_text_div.fs-5 text text-center">
               <p class="score">Won :<span class="won score_text"></span></p>
           </div>
@@ -29,28 +32,33 @@
               <p class="score">Lost :<span class="lost score_text"></span></p>
           </div>
         </div>
-        
+        <div class="row text-center text-light  fs-5">
+          <div class="col">
+            <div class="player-choice "></div>
+            <p class="player_choice_txt"></p>
+          </div>
+          <div class="col">
+            <div class="computer-choice ">
+              <p class="player_choice_txt"></p>
+            </div>
+          </div>
+        </div>
         <div class="row result-container text-center mt-5">
           
-          <div class="col-sm  text-primary fa-5x ">
-            <span><i id="Scissor"  onclick="onClick('scissor')" class="fa-solid fa-hand-scissors hover-icon"></i></span>
+          <div class="col-sm  text-primary fa-3x ">
+            <span><i id="Scissor"  onclick="onClick('scissor')" class=" border border-primary rounded p-2 fa-solid fa-hand-scissors hover-icon"></i></span>
           </div>
-          <div class="col-sm text-primary fa-5x ">
-            <span><i id="Paper" onclick="onClick('paper')" class="fa-solid fa-hand paper hover-icon"></i></span>
+          <div class="col-sm text-primary fa-3x ">
+            <span><i id="Paper" onclick="onClick('paper')" class=" border border-primary rounded p-2 fa-solid fa-hand paper hover-icon"></i></span>
           </div>
-          <div class="col-sm text-primary fa-5x ">
-            <span><i id="Rock" onclick="onClick('rock')"  class=" fa-solid fa-hand-back-fist Rock hover-icon"></i></span>
+          <div class="col-sm text-primary fa-3x ">
+            <span><i id="Rock" onclick="onClick('rock')"  class=" border border-primary rounded p-2  fa-solid fa-hand-back-fist Rock hover-icon"></i></span>
           </div>
           <div class="row row-result mt-5">
             <div class="col text-center text-light ">
-              <div class="player-choice"></div>
-              <div class="computer-choice"></div>
-              <div id="result" class="result text-center text-x2 "></div>
+              <div id="result" class="result text-center text-x "></div>
             </div>
           </div>
-          <div>
-            <p class="congratulations" id="congratulations">Congratulations! You won the game!</p>
-        </div>
           
         </div>
 
